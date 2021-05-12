@@ -30,6 +30,11 @@ public:
 		_csObj = csObj;
 		_callBack = cb;
 	}
+
+	virtual bool OnRun(int microseconds = 1)
+	{
+		return true;
+	}
 private:
 	void* _csObj = nullptr;
 	OnNetMsgCallBack _callBack = nullptr;
