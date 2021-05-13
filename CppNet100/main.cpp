@@ -3,9 +3,10 @@
 
 #include"EasyTcpClient.hpp"
 #include"CELLMsgStream.hpp"
+#include"EasySelectClient.hpp"
 
 #ifdef _WIN32
-#define EXPORT_DLL _declspec(dllexport)
+#define EXPORT_DLL __declspec(dllexport)
 #else
 #define EXPORT_DLL
 #endif // 
@@ -15,7 +16,7 @@ extern "C"
 	typedef void(*OnNetMsgCallBack)(void* csObj, void* data, int len);
 }
 
-class NativeTCPClient : public EasyTcpClient
+class NativeTCPClient : public EasySelectClient
 {
 public:
 	//ÏìÓ¦ÍøÂçÏûÏ¢
@@ -31,10 +32,6 @@ public:
 		_callBack = cb;
 	}
 
-	virtual bool OnRun(int microseconds = 1)
-	{
-		return true;
-	}
 private:
 	void* _csObj = nullptr;
 	OnNetMsgCallBack _callBack = nullptr;
