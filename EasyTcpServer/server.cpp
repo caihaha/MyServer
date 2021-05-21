@@ -1,10 +1,13 @@
-﻿//#include"EasySelectServer.hpp"
+﻿#ifdef __linux__
 //#include"EasyEpollServer.hpp"
-#include"EasyIOCPServer.hpp"
+#endif // __linux__
+
+#include"EasySelectServer.hpp"
+//#include"EasyIOCPServer.hpp"
 #include"CELLMsgStream.hpp"
 #include"CELLConfig.hpp"
 
-class MyServer : public EasyIOCPServer
+class MyServer : public EasySelectServer
 {
 public:
 	MyServer()
@@ -130,6 +133,7 @@ private:
 	bool _bCheckMsgID;
 };
 
+// 第index个，def默认值，要读取参数的名字argName输出Log用的。
 const char* argToStr(int argc, char* args[], int index, const char* def, const char* argName)
 {
 	if (index >= argc)

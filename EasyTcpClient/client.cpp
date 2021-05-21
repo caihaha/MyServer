@@ -1,6 +1,9 @@
-﻿//#include"EasySelectClient.hpp"
-#include"EasyIOCPClient.hpp"
-//#include"CELLTimestamp.hpp"
+﻿#ifdef __linux__
+//#include"EasyEpollClient.hpp"
+#endif // __linux__
+
+#include"EasySelectClient.hpp"
+//#include"EasyIOCPClient.hpp"
 #include"CELLConfig.hpp"
 #include"CELLThread.hpp"
 #include"CELLMsgStream.hpp"
@@ -38,7 +41,7 @@ int nRecvBuffSize = RECV_BUFF_SZIE;
 //是否检测-发送的请求已被服务器回应
 int bChekSendBack = true;
 
-class MyClient : public EasyIOCPClient
+class MyClient : public EasySelectClient
 {
 public:
 	MyClient()

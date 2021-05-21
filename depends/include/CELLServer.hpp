@@ -142,7 +142,7 @@ public:
 	void DoMsg()
 	{
 		CELLClient* pClient = nullptr;
-		for (auto itr : _clients)
+		for (auto &itr : _clients)
 		{
 			pClient = itr.second;
 			//循环 判断是否有消息需要处理

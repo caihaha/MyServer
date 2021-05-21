@@ -1,6 +1,8 @@
 #ifndef _CELLEpollServer_HPP_
 #define _CELLEpollServer_HPP_
 
+#ifdef __linux__
+
 #include"CELLServer.hpp"
 #include"CELLEpoll.hpp"
 
@@ -90,4 +92,5 @@ private:
 	CELLEpoll _ep;
 };
 
+#endif // __linux__
 #endif // !_CELLEpollServer_HPP_

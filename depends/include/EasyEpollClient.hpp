@@ -1,6 +1,8 @@
 ﻿#ifndef _EasyEpollClient_hpp_
 #define _EasyEpollClient_hpp_
 
+#ifdef __linux__
+
 #include"EasyTcpClient.hpp"
 #include"CELLEpoll.hpp"
 
@@ -75,4 +77,5 @@ protected:
 	CELLEpoll _ep;
 };
 
-#endif
+#endif // __linux__
+#endif //!_EasyEpollClient_hpp_
