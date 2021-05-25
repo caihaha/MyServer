@@ -4,7 +4,6 @@
 #include"CELL.hpp"
 #include"INetEvent.hpp"
 #include"CELLClient.hpp"
-#include"CELLSemaphore.hpp"
 
 #include<vector>
 #include<map>
