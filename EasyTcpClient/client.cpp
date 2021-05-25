@@ -259,7 +259,7 @@ void WorkThread(CELLThread* pThread,int id)
 int main(int argc, char *args[])
 {
 	//设置运行日志名称
-	CELLLog::Instance().setLogPath("clientLog", "w", false);
+	CELLLog::Instance().setLogPath("../../Log/clientLog", "w", false);
 
 	CELLConfig::Instance().Init(argc, args);
 

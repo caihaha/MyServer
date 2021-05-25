@@ -162,7 +162,7 @@ int argToInt(int argc, char* args[], int index, int def, const char* argName)
 int main(int argc,char* args[])
 {
 	//设置运行日志名称
-	CELLLog::Instance().setLogPath("serverLog", "w", false);
+	CELLLog::Instance().setLogPath("../../Log/serverLog", "w", false);
 	CELLConfig::Instance().Init(argc, args);
 
 	const char* strIP = CELLConfig::Instance().getStr("strIP", "any");
