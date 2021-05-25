@@ -270,7 +270,7 @@ int main(int argc, char *args[])
 	nMsg = CELLConfig::Instance().getInt("nMsg", 10);
 	nSendSleep = CELLConfig::Instance().getInt("nSendSleep", 100);
 	nWorkSleep = CELLConfig::Instance().getInt("nWorkSleep", 1);
-	bChekSendBack = CELLConfig::Instance().hasKey("-chekSendBack");
+	bChekSendBack = CELLConfig::Instance().hasKey("-checkSendBack");
 	nSendBuffSize = CELLConfig::Instance().getInt("nSendBuffSize", SEND_BUFF_SZIE);
 	nRecvBuffSize = CELLConfig::Instance().getInt("nRecvBuffSize", RECV_BUFF_SZIE);
 
