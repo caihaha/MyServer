@@ -103,15 +103,15 @@ public:
 	//向IOCP投递接受连接的任务
 	bool postAccept(IO_DATA_BASE* pIO_DATA)
 	{
-		if (!_AcceptEx)
+		if (!_acceptEx)
 		{
-			CELLLog_Error("error, postAccept _AcceptEx is null");
+			CELLLog_Error("error, postAccept _acceptEx is null");
 			return false;
 		}
 			
 		pIO_DATA->iotype = IO_TYPE::ACCEPT;
 		pIO_DATA->sockfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-		if (FALSE == _AcceptEx(_sockServer
+		if (FALSE == _acceptEx(_sockServer
 			, pIO_DATA->sockfd
 			, pIO_DATA->wsabuff.buf
 			, 0
@@ -210,24 +210,24 @@ public:
 		return 1;
 	}
 
-	bool loadAcceptEx(SOCKET ListenSocket)
+	bool loadAcceptEx(SOCKET listenSocket)
 	{
 		if (INVALID_SOCKET != _sockServer)
 		{
 			CELLLog_Error("loadAcceptEx _sockServer != INVALID_SOCKET");
 			return false;
 		}
-		if (_AcceptEx)
+		if (_acceptEx)
 		{
-			CELLLog_Error("loadAcceptEx _AcceptEx != NULL");
+			CELLLog_Error("loadAcceptEx _acceptEx != NULL");
 			return false;
 		}
-		_sockServer = ListenSocket;
-		GUID GuidAcceptEx = WSAID_ACCEPTEX;
+		_sockServer = listenSocket;
+		GUID guidAcceptEx = WSAID_ACCEPTEX;
 		DWORD dwBytes = 0;
-		int iResult = WSAIoctl(ListenSocket, SIO_GET_EXTENSION_FUNCTION_POINTER,
-			&GuidAcceptEx, sizeof(GuidAcceptEx),
-			&_AcceptEx, sizeof(_AcceptEx),
+		int iResult = WSAIoctl(listenSocket, SIO_GET_EXTENSION_FUNCTION_POINTER,
+			&guidAcceptEx, sizeof(guidAcceptEx),
+			&_acceptEx, sizeof(_acceptEx),
 			&dwBytes, NULL, NULL);
 
 		if (iResult == SOCKET_ERROR) {
@@ -238,7 +238,7 @@ public:
 	}
 private:
 	//将AcceptEx函数加载内存中，调用效率更高
-	LPFN_ACCEPTEX _AcceptEx = NULL;
+	LPFN_ACCEPTEX _acceptEx = NULL;
 	HANDLE _completionPort = NULL;
 	SOCKET _sockServer = INVALID_SOCKET;
 };
